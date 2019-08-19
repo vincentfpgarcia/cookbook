@@ -119,6 +119,26 @@ Then, we create a IPython kernel for Jupyter:
 In Jupyter notebook now, select the `Python (myenv)`  kernel in the menu `Kernel` > `Change kernel` to execute Python code inside the `myenv` environment.
 
 
+## Sublime Text and virtual environment
 
+The content of this section was inspired by the [official documentation of Anaconda](https://docs.anaconda.com/anaconda/user-guide/tasks/integration/sublime/). Please read Anaconda's documentation for a complete presentation of how to integrate Conda virtual environments within Sublime Text. You'll find bellow a procedure that works for me:
 
+1. Open Sublime Text
+2. Install the Conda package:
+	- Open the `Command palette` menu using the menu `Tools > Command Palette...`
+	- Access the `Package Control : Install Package` section
+	- Search for the `Conda` package and install it
+3. Change the current Build System to `Conda` in the menu `Tools > Build System`
+4. Select the virtual environment you want to use:
+	- Open the `Command palette` menu using the menu `Tools > Command Palette...`
+	- Access the `Conda: Activate Environment` section
+	- Choose the environment to use in the list
+5. If the previous step does not show your environment(s), it may be because the environment directory needs to be set:
+	- Go to menu `Sublime Text > Preferences > Package Settings > Conda > Settings - User`
+	- Define the variable `environment_directory ` to point to the location of the Anaconda environments location. In my case, Conda environments are store in `/anaconda3/envs/`. So in my case, the `Settings - User` looks like this:
 
+```
+{
+	"environment_directory": "/anaconda3/envs/"
+}
+```

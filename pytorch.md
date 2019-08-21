@@ -1,3 +1,3 @@
 # Pytorch
 
-## Datasets
+* [Datasets](pytorch/datasets.md)

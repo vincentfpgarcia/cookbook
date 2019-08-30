@@ -65,14 +65,14 @@ List of classes
 - truck
 ```
 
-## Access CIFAR10 images / labels
+## Access images / labels
 
 The images in the training and test sets can be accessed using the `data` attribute. This returns a Numpy array containing the entire dataset. The `targets` attributes contains the labels (index) of the images. We recall that CIFAR10 classify each image using 10 classes list above. The `classes` contains the conversion from a class index to a comprehensible string.
 
 ```python
 import torch
 import torchvision
-from PIL import Image
+import matplotlib.pyplot as plt
 
 # Access the training set
 datasets_dir = '~/datasets'
@@ -84,23 +84,104 @@ idx = 20
 # Access the corresponding image label
 label = trainset.targets[idx]
 label_str = trainset.classes[label]
-print("Index = %d" % idx)
-print("Label = %d -> %s" % (label, label_str))
+print("Image index : %d" % idx)
+print("Image label : %d (%s)" % (label, label_str))
 
 # Access the image and display it
-img_np = trainset.data[idx,:,:,:]
-img_pil = Image.fromarray(img_np)
-img_pil.show()
+img = trainset.data[idx,:,:,:]
+print("Image type  : %s" % img.dtype)
+plt.figure()
+plt.imshow(img)
+plt.axis('off')
+plt.show()
 ```
 
 The output is:
 
 ```
 Files already downloaded and verified
-Index = 20
-Label = 4 -> deer
+Image index : 20
+Image label : 4 (deer)
+Image type  : uint8
 ```
 
 And the displayed image is:
 
 ![test2](test2.png)
+
+Note that the image is encoded on `uint8`.
+
+
+## DataLoader
+
+A convenient way to access the image is to use a `DataLoader`.
+
+But first, let's see what changed in the CIFAR10 function. A `transform` function has been added. Indeed, the `DataLoader` requires to have access to images as `torch.Tensor`. By adding the transformation `transforms.ToTensor()`, we enseure that `trainset` will send the images in the correct format to the `DataLoader`. For a complete presentation of `transforms`, please read the [official documentation](https://pytorch.org/docs/stable/torchvision/transforms.html?highlight=transform).
+
+The `DataLoader` takes care of loading the images as batches. In the example bellow, a batch will contain 4 images, the training data is not shuffled (just to have a consistent example here) et we are using 2 workers (number of subprocesses used for data loading).
+
+To access the different bacthes, we create an `iter` object and call the `next()` method. The images and labels are `torch.Tensor` objects. To play with them, we can simply convert them into Numpy array.
+
+One should pay attention to the shape of the batch. As shown bellow, the batch shape is (4, 3, 32, 32), corresponding respectively to the number of images in the batch, the number of channels, the height and the width of each image. To display properly the first image of the bacth, we first need to transpose it.
+
+One last thing. At this point, images are encoded on `float32` (see output).
+
+```python
+import numpy as np
+import torch
+import torchvision
+import torchvision.transforms as transforms
+import matplotlib.pyplot as plt
+
+# Access the training set
+datasets_dir = '~/datasets'
+trainset = torchvision.datasets.CIFAR10(root=datasets_dir,
+                                        train=True,
+                                        download=True,
+                                        transform=transforms.ToTensor())
+
+# Define the data loader
+trainloader = torch.utils.data.DataLoader(trainset,
+                                          batch_size=4,
+                                          shuffle=False,
+                                          num_workers=2)
+
+# Access the first image batch
+dataiter = iter(trainloader)
+images, labels = dataiter.next()
+
+# Convert the torch.Tensor into a Numpy array
+images_np = images.numpy()
+labels_np = labels.numpy()
+
+# Print batch shape
+print("Array shape : %s" % str(images_np.shape))
+print("Array type  : %s" % images_np.dtype)
+
+# Access the first image of the batch
+idx = 0
+img = np.transpose(images_np[idx,:,:,:], (1, 2, 0))
+lbl = labels_np[idx]
+print("Image index : %d" % idx)
+print("Image label : %d (%s)" % (lbl, trainset.classes[lbl]))
+
+# Display
+plt.figure()
+plt.imshow(img)
+plt.axis('off')
+plt.show()
+```
+
+The output is:
+
+```
+Files already downloaded and verified
+Array shape : (4, 3, 32, 32)
+Array type  : float32
+Image index : 0
+Image label : 6 (frog)
+```
+
+And the displayed image is:
+
+![test3](test3.png)

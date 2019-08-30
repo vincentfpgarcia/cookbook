@@ -1,33 +1,3 @@
-def example0():
-    
-    import torch
-    # import torchvision
-    import torchvision.transforms as transforms
-
-    transform = transforms.Compose([
-        transforms.ToTensor(),
-        transforms.Normalize((0.5, 0.5, 0.5), (0.5, 0.5, 0.5))])
-
-    trainset = torchvision.datasets.CIFAR10(root='~/datasets',
-                                            train=True,
-                                            download=True,
-                                            transform=transform)
-
-    trainloader = torch.utils.data.DataLoader(trainset,
-                                              batch_size=4,
-                                              shuffle=True,
-                                              num_workers=2)
-
-    testset = torchvision.datasets.CIFAR10(root='~/datasets',
-                                       train=False,
-                                       download=True,
-                                       transform=transform)
-
-    testloader = torch.utils.data.DataLoader(testset,
-                                         batch_size=4,
-                                         shuffle=False,
-                                         num_workers=2)
-
 def example1():
     
     import torch
@@ -67,7 +37,7 @@ def example2():
     
     import torch
     import torchvision
-    from PIL import Image
+    import matplotlib.pyplot as plt
 
     # Access the training set
     datasets_dir = '~/datasets'
@@ -79,14 +49,16 @@ def example2():
     # Access the corresponding image label
     label = trainset.targets[idx]
     label_str = trainset.classes[label]
-    print("Index = %d" % idx)
-    print("Label = %d -> %s" % (label, label_str))
+    print("Image index : %d" % idx)
+    print("Image label : %d (%s)" % (label, label_str))
 
     # Access the image and display it
-    img_np = trainset.data[idx,:,:,:]
-    print(img_np.dtype)
-    img_pil = Image.fromarray(img_np)
-    img_pil.show()
+    img = trainset.data[idx,:,:,:]
+    print("Image type  : %s" % img.dtype)
+    plt.figure()
+    plt.imshow(img)
+    plt.axis('off')
+    plt.show()
 
 
 def example3():
@@ -95,7 +67,6 @@ def example3():
     import torch
     import torchvision
     import torchvision.transforms as transforms
-    from PIL import Image
     import matplotlib.pyplot as plt
 
     # Access the training set
@@ -108,95 +79,36 @@ def example3():
     # Define the data loader
     trainloader = torch.utils.data.DataLoader(trainset,
                                               batch_size=4,
-                                              shuffle=True,
+                                              shuffle=False,
                                               num_workers=2)
 
     # Access the first image batch
     dataiter = iter(trainloader)
     images, labels = dataiter.next()
 
-    # def imshow(img):
-    #     img = img / 2 + 0.5     # unnormalize
-    #     npimg = img.numpy()
-    #     plt.imshow(np.transpose(npimg, (1, 2, 0)))
-    #     plt.show()
-
-    # imshow(torchvision.utils.make_grid(images))
-
-    # print('make_grid', type(torchvision.utils.make_grid(images)))
-
-    # print(type(images))
-    # print(images.size())
-    # return
-
     # Convert the torch.Tensor into a Numpy array
     images_np = images.numpy()
-    print("Array size: %s" % str(images_np.shape))
-    print("Array type: %s" % images_np.dtype)
+    labels_np = labels.numpy()
 
-    # tmp = np.transpose(images_np[0,:,:,:], (1, 2, 0))
-    # tmp = (tmp*255).astype(np.uint8)
-    # plt.imshow(tmp)
-    # plt.show()
+    # Print batch shape
+    print("Array shape : %s" % str(images_np.shape))
+    print("Array type  : %s" % images_np.dtype)
 
-    tmp = np.zeros(256,256)
-    print(tmp.shape)
+    # Access the first image of the batch
+    idx = 0
+    img = np.transpose(images_np[idx,:,:,:], (1, 2, 0))
+    lbl = labels_np[idx]
+    print("Image index : %d" % idx)
+    print("Image label : %d (%s)" % (lbl, trainset.classes[lbl]))
 
-
-    # f, ax = plt.subplots(1, 4)
-
-    # for i in range(4):
-    #     img = images_np[i,:,:,:]
-    #     img = np.transpose(img, (1, 2, 0))
-
-    #     ax[0].imshow(img)
-    # plt.show()
-
-    # tmp = np.transpose(images_np[0,:,:,:], (1, 2, 0))
-    # tmp = (tmp*255).astype(np.uint8)
-    # img_pil = Image.fromarray(tmp)
-    # img_pil.show()
-
-
-    # print(dir(images))
-    # print(type(images_np))
-    # print(images_np.shape)
-
-    # # Pick an image in the dataset
-    # idx = 20
-
-    # # Access the corresponding image label
-    # label = trainset.targets[idx]
-    # label_str = trainset.classes[label]
-    # print("Index = %d" % idx)
-    # print("Label = %d -> %s" % (label, label_str))
-
-    # Access the image and display it
-    # img_np = trainset.data[idx,:,:,:]
-    # print(type(img_np))
-    # img_pil = Image.fromarray(img_np)
-    # img_pil.show()
-
-
+    # Display
+    plt.figure()
+    plt.imshow(img)
+    plt.axis('off')
+    plt.show()
 
 
 if __name__ == '__main__':
-    # example0()
     # example1()
     # example2()
-    # example3()
-
-    # import numpy as np
-    import matplotlib
-    import matplotlib.pyplot as plt
-    # tmp = np.zeros((256,256,3), dtype=np.uint8)
-
-    matplotlib.use('MacOSX')
-
-    # print(dir(matplotlib))
-
-    # print(tmp.shape)
-    # print(tmp.dtype)
-    plt.figure()
-    # plt.imshow(tmp)
-    plt.show()
+    example3()

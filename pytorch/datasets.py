@@ -191,6 +191,8 @@ if __name__ == '__main__':
     import matplotlib.pyplot as plt
     # tmp = np.zeros((256,256,3), dtype=np.uint8)
 
+    matplotlib.use('MacOSX')
+
     # print(dir(matplotlib))
 
     # print(tmp.shape)

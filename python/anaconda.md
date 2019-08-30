@@ -100,6 +100,12 @@ And we can specify the version of the package we want to use:
 
 Note that packages can also be installed directly when the environment is created.
 
+To display the packages installed:
+
+```
+% conda list
+```
+
 
 ## Jupyter notebook and virtual environment
 

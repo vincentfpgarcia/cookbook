@@ -66,13 +66,13 @@ To specify the version of Python we want in the environment:
 Activate the environment:
 
 ```
-> source activate myenv
+% conda activate myenv
 ```
 
 Deactivate the environment:
 
 ```
-> source deactivate
+% conda deactivate
 ```
 
 

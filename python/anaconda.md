@@ -58,7 +58,7 @@ To create a virtual environment nammed `myenv` (any name will do):
 To specify the version of Python we want in the environment:
 
 ```
-% conda create -n myenv python=3.7
+% conda create --name myenv python=3.7
 ```
 
 ### Activation / Deactivation
@@ -107,13 +107,13 @@ To install a package:
 We can also target a specific environment:
 
 ```
-% conda install -n myenv scipy
+% conda install --name myenv scipy
 ```
 
 And we can specify the version of the package we want to use:
 
 ```
-% conda install -n myenv scipy=0.15.0
+% conda install --name myenv scipy=0.15.0
 ```
 
 Note that packages can also be installed directly when the environment is created.
@@ -130,7 +130,7 @@ To display the packages installed:
 To use a virtual environment inside Jupyter Notebook, first we need to install `ipykernel:`
 
 ```
-% conda install -n myenv ipykernel
+% conda install --name myenv ipykernel
 ```
 
 Then, we create a IPython kernel for Jupyter:

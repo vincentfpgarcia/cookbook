@@ -96,6 +96,30 @@ To remove an environment:
 % conda remove --name myenv --all
 ```
 
+### Verification of Python
+
+We want to make sure that the Python being used in the environment is the correct one. To do so, first activate the `myenv` environment. Then, enter Python using the `python command`. This will give something like that:
+
+```
+(myenv) ➜ ~ python
+Python 3.7.6 (default, Jan 8 2020, 13:42:34)
+[Clang 4.0.1 (tags/RELEASE_401/final)] :: Anaconda, Inc. on darwin
+Type "help", "copyright", "credits" or "license" for more information.
+>>>
+```
+
+We can see that the Python version used is correct and is somehow related to Anaconda. Now, we can verify the Python interpreter using the following Python code:
+
+```
+>>> import sys
+>>> print(sys.executable)
+/Users/vgarcia/opt/anaconda3/envs/myenv/bin/python
+```
+
+And now, we have the confirmation that the interpreter used in `myenv` is the one stored in the `myenv` folder. So it's all good!
+
+
+
 ## Install packages
 
 To install a package:

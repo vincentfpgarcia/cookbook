@@ -10,21 +10,39 @@
 
 ## Conda
 
-Conda is a package, dependency and environment management for any language. It is installed by Anaconda, but let's see if the `conda` command is available. Open a terminal and try to execute the command:
+Conda is a package, dependency and environment management for any language. It is installed by Anaconda, but let's see if the `conda` command is available. Open a Terminal and try to execute the command:
 
 ```
 % conda
 ```
 
-If conda command is not available, add conda to your `PATH` by executing the following command in a terminal:
+If conda command is not available, it's probably because the initialization has not been done. Anaconda recommends to use the `conda init` command.
+
+On my computer, Anaconda 3 has been installed in the `/Users/vincent/opt/anaconda3` folder. Note that this folder might be different on your system. To initialize conda, use the following command line in a Terminal. Note that I'm using zsh as shell. This initialization also works with other shells.
 
 ```
-% export PATH=/anaconda3/bin/:$PATH
+% /Users/vincent/opt/anaconda3/bin/conda init zsh
 ```
 
-The conda command should be available now in this terminal and as long as you don't close it.
+This command will modify the file `.zshrc` to add the conda command.
 
-You can also add the previous command in your `.bashrc` (or `.zshrc`) file if you want the `conda ` to be available every time a terminal is opened.
+When restarting the Terminal, one can see that the `(base)` conda environment is used by default. If you do not want to start automatically in a conda environment, use the following command before the `conda init`:
+
+```
+% conda config --set auto_activate_base false
+```
+
+Now, when starting a Terminal, you should not be in a conda environment.
+
+The second option to add conda to your environment is to do it manually. Again, this is not recommended by Anaconda. To do so, simply add the conda folder to your `PATH` using the following command in a Terminal:
+
+```
+% export PATH=/Users/vincent/opt/anaconda3/bin/:$PATH
+```
+
+The conda command should be available now in this Terminal and as long as you don't close it. If you want the `conda` command to be available every time a Terminal is opened, add the previous command at the end of your `.zshrc` file (Remember that  I'm using zsh. If you are using bash, modify the `.bashrc` file).
+
+See [FAQ](https://docs.anaconda.com/anaconda/user-guide/faq/) for more information about Anaconda.
 
 
 ## Virtual environments
@@ -34,7 +52,7 @@ You can also add the previous command in your `.bashrc` (or `.zshrc`) file if yo
 To create a virtual environment nammed `myenv` (any name will do):
 
 ```
-% conda create -n myenv
+% conda create --name myenv
 ```
 
 To specify the version of Python we want in the environment:

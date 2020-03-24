@@ -8,6 +8,10 @@
 * [Matplotlib](python/matplotlib.md)
 * [Pillow](python/pil.md)
 
+### Swift
+
+* [Image conversion](swift/image_conversion.md)
+
 ## Machine learning
 
 ### TensorFlow

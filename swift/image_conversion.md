@@ -5,13 +5,13 @@ Image conversion is not easy. I'm gathering bellow some conversions I was able t
 
 # Conversion UIImage / CGImage
 
-## UIImage to CGImage
+### UIImage to CGImage
 
 ```swift
 let myCGImage = myUIImage.cgImage
 ```
 
-## CGImage to UIImage
+### CGImage to UIImage
 
 ```swift
 let myUIImage = UIImage(cgImage: myCGOutput)
@@ -20,14 +20,14 @@ let myUIImage = UIImage(cgImage: myCGOutput)
 
 # Conversion UIImage / CIImage
 
-## UIImage to CIImage
+### UIImage to CIImage
 
 ```swift
 let myCIImage = CIImage(image: myUIImage)
 ```
 
 
-## CIImage to UIImage
+### CIImage to UIImage
 
 ```swift
 // We assume we know the image size
@@ -43,13 +43,13 @@ UIGraphicsEndImageContext()
 
 # Conversion CGImage / CIImage
 
-## CGImage to CIImage
+### CGImage to CIImage
 
 ```swift
 let myCIImage = CIImage(cgImage: myCGImage)
 ```
 
-## CIImage to CGImage
+### CIImage to CGImage
 
 ```swift
 // We assume we know the image size
@@ -60,7 +60,7 @@ let myCGImage = context.createCGImage(myCIImage, from: CGRect(x: 0, y: 0, width:
 
 # Conversion CGImage / CVPixelBuffer
 
-## CGImage to CVPixelBuffer
+### CGImage to CVPixelBuffer
 
 This conversion was the most difficult one to write.
 
@@ -107,7 +107,7 @@ func conversion(myCGImage: CGImage?) -> CVPixelBuffer? {
 }
 ```
 
-## CVPixelBuffer to CGImage
+### CVPixelBuffer to CGImage
 
 ```swift
 // We assume we know the image size

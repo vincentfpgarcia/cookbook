@@ -3,9 +3,9 @@
 
 ## Installation
 
-- Go to the [Anaconda download page](https://www.anaconda.com/distribution)
-- Download the Python 3 graphical installer
-- Install Anaconda (follow the steps)
+- Go to the [Anaconda product page](https://www.anaconda.com/products/individual).
+- Download the Python 3 graphical installer.
+- Install Anaconda by following the steps. In "Destination select", I personally choose to install Anaconda on my home directory.
 
 
 ## Conda
@@ -148,6 +148,25 @@ To display the packages installed:
 % conda list
 ```
 
+Note also that for some packages, we need to specify where the packages are stored. This lcoation is called `channel` and can be speified using the `--channel` or `-c` option:
+
+```
+% conda install --name myenv --channel pytorch pytorch
+```
+
+Bellow is a list of packages I usually install.
+
+```
+% conda install --name myenv --channel anaconda numpy
+% conda install --name myenv --channel pytorch torchvision
+% conda install --name myenv --channel conda-forge opencv
+% conda install --name myenv --channel conda-forge h5py
+% conda install --name myenv --channel conda-forge scikit-image
+% conda install --name myenv --channel conda-forge tensorboard
+% conda install --name myenv --channel conda-forge absl-py
+% conda install --name myenv --channel conda-forge onnx
+```
+
 
 ## Jupyter notebook and virtual environment
 
@@ -160,7 +179,7 @@ To use a virtual environment inside Jupyter Notebook, first we need to install `
 Then, we create a IPython kernel for Jupyter:
 
 ```
-% source activate myenv
+% conda activate myenv
 % python -m ipykernel install --user --name myenv --display-name "Python (myenv)"
 ```
 
@@ -187,6 +206,6 @@ The content of this section was inspired by the [official documentation of Anaco
 
 ```
 {
-	"environment_directory": "/anaconda3/envs/"
+	"environment_directory": "/Users/vincent/opt/anaconda3/envs/"
 }
 ```

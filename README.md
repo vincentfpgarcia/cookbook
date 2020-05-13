@@ -28,3 +28,4 @@ I must insist that the targeted user of the information shared here is me and me
 ### PyTorch
 
 * [Datasets](pytorch/datasets.md)
+* [Convert PyTorch models to CoreML](pytorch/pytorch-to-coreml.md)

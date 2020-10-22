@@ -18,6 +18,7 @@ I must insist that the targeted user of the information shared here is me and me
 ### Swift
 
 * [Image conversion](swift/image_conversion.md)
+* [Add a CoreML model into a Swift package](swift/swift-package-coreml.md)
 
 ## Machine learning
 

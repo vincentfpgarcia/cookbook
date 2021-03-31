@@ -39,7 +39,7 @@ List images but only show their ID:
 $ docker image ls -q
 ```
 
-Remove on image given its ID, for instance fe4f5ad8a20c:
+Remove an image given its ID, for instance fe4f5ad8a20c:
 
 ```
 $ docker image rm fe4f5ad8a20c
@@ -52,3 +52,67 @@ $ docker image rm $(docker image ls -q)
 ```
 
 ## Containers
+
+### Create containers
+
+Create a container:
+
+```
+$ docker run my-image
+```
+
+Redirect the container port to your local port:
+
+```
+$ docker run -p 8080:8080 my-image
+```
+
+Define an environement variable:
+
+```
+$ docker run -e PORT=8080 my-image
+```
+
+### List, stop and remove containers
+
+List runnning containers:
+
+```
+$ docker ps
+```
+
+List all containers:
+
+```
+$ docker ps -a
+```
+
+List all containers but only show their IDs:
+
+```
+$ docker ps -aq
+```
+
+Stop a container given its ID, for instance b025bfad7503:
+
+```
+$ docker kill b025bfad7503
+```
+
+Stop all containers:
+
+```
+$ docker kill $(docker ps -aq)
+```
+
+Remove a container given its ID, for instance b025bfad7503:
+
+```
+$ docker rm b025bfad7503
+```
+
+Remove all containers:
+
+```
+$ docker rm $(docker ps -aq)
+```

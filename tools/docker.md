@@ -116,3 +116,36 @@ Remove all containers:
 ```
 $ docker rm $(docker ps -aq)
 ```
+
+
+## Useful Tools
+
+Get a bash running in a container:
+
+```
+$ docker exec -it b025bfad7503 /bin/bash
+```
+
+Get the container ID from the container name:
+
+```
+$ docker ps -aqf ancestor=my-image
+```
+
+Get the stats of a given container:
+
+```
+$ docker stats b025bfad7503
+```
+
+Get the memory used by a container:
+
+```
+$ docker stats b025bfad7503 --no-stream --format "{{{{.MemUsage}}}}
+```
+
+Clean-up, remove unused data:
+
+```
+$ docker system prune -af
+```

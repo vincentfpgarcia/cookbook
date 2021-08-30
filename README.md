@@ -23,6 +23,7 @@ I must insist that the targeted user of the information shared here is me and me
 ### Tools
 
 * [Git](tools/git.md)
+* [GitHub](tools/github.md)
 * [Docker](tools/docker.md)
 
 ## Machine learning

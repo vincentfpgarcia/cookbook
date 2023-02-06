@@ -11,6 +11,7 @@ I must insist that the targeted user of the information shared here is me and me
 
 ### Python
 
+* [Pyenv](python/pyenv.md)
 * [Anaconda](python/anaconda.md)
 * [Matplotlib](python/matplotlib.md)
 * [Pillow](python/pil.md)

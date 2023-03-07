@@ -17,6 +17,7 @@ I must insist that the targeted user of the information shared here is me and me
 * [Matplotlib](python/matplotlib.md)
 * [Pillow](python/pil.md)
 * [Black](python/black.md)
+* [Flake8](python/flake8.md)
 
 ### Swift
 

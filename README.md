@@ -15,6 +15,7 @@ I must insist that the targeted user of the information shared here is me and me
 * [Anaconda](python/anaconda.md)
 * [Matplotlib](python/matplotlib.md)
 * [Pillow](python/pil.md)
+* [Black](python/black.md)
 
 ### Swift
 

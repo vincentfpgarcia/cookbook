@@ -120,6 +120,12 @@ $ docker rm $(docker ps -aq)
 
 ## Useful Tools
 
+Launches an interactive Bash shell inside a new container based on the "agent" image:
+
+```
+docker run -it my-image bash
+```
+
 Get a bash running in a container:
 
 ```

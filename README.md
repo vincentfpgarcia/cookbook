@@ -30,6 +30,7 @@ I must insist that the targeted user of the information shared here is me and me
 * [Git](tools/git.md)
 * [GitHub](tools/github.md)
 * [Docker](tools/docker.md)
+* [Fastlane](tools/fastlane.md)
 
 ## Machine learning
 
